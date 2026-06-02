@@ -1,8 +1,16 @@
 #include <iostream>
+#include "Menza.h"
+#include "Obrok.h"
+#include "Student.h"
+#include <string>
 using namespace std;
+
+
+
 int main() {
 	cout << "Hello World!" << endl;
 
+    Menza menza;
 
     int izbor;
 
@@ -17,30 +25,41 @@ int main() {
         cout << "6. Usluzi sledeceg studenta\n";
         cout << "7. Dopuni stanje kartice\n";
         cout << "8. Izvestaj na kraju smene\n";
-        cout << "9. Kraj\n";
+        cout << "9. Sortiraj obroke po ceni\n";
+        cout << "10. Kraj\n";
 
         cout << "\nIzbor: ";
         cin >> izbor;
 
         switch (izbor) {
-        case 1:
+        case 1: {
+            system("cls");
+
+            
+            menza.dodajStudenta();
             // dodaj studenta
             break;
-
+        }
         case 2:
-            // dodaj obrok
+			system("cls");
+            menza.dodajObrok();
             break;
 
         case 3:
             // prikazi studente
+			menza.prikaziStudente();
             break;
 
         case 4:
+            system("cls");
+            menza.prikaziObroke();
             // prikazi obroke
             break;
 
+
         case 5:
             // stavi u red
+
             break;
 
         case 6:
@@ -48,14 +67,18 @@ int main() {
             break;
 
         case 7:
-            // dopuni karticu
+            system("cls");
+            menza.prikaziStudente();
+            menza.dopuniKarticu();
             break;
 
         case 8:
             // izvestaj
             break;
-
         case 9:
+            menza.sortirajObrokePoCeni();
+            break;
+        case 10:
             cout << "Kraj programa.\n";
             break;
 
@@ -64,7 +87,7 @@ int main() {
             cout << "Nepostojeca opcija!\n";
         }
 
-    } while (izbor != 9);
+    } while (izbor != 10);
 
 
 

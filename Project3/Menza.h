@@ -3,20 +3,31 @@
 #include "Obrok.h"
 #include <vector>
 #include <queue>
+#include <iostream>
+#include <string>
 
 using namespace std;
 class Menza
 {
+private:
+    vector<Student> studenti;
+    vector<Obrok> obroci;
+
+    queue<Student*> redCekanja;
+
+    static int brojProdatihObroka;
+    static int ukupanPrihod;
+
 public:
     Menza();
     ~Menza();
 
     // Upravljanje studentima
-    void dodajStudenta(Student* student);
+    void dodajStudenta();
     void prikaziStudente() const;
 
     // Upravljanje obrocima
-    void dodajObrok(Obrok* obrok);
+    void dodajObrok();
     void prikaziObroke() const;
     void sortirajObrokePoCeni();
 
@@ -25,7 +36,7 @@ public:
     void usluziStudenta(int redniBrojObroka);
 
     // Kartice
-    void dopuniKarticu(int brojKartice, double iznos);
+    void dopuniKarticu();
 
     // Pretraga
     Student* pronadjiStudenta(int brojKartice);
@@ -37,13 +48,7 @@ public:
     // Statistika
     static int getBrojProdatihObroka();
     static double getUkupanPrihod();
-private:
-	vector<Student*> studenti;
-	vector<Obrok*> obroci;
 
-	queue<Student*> redCekanja;
-	static int brojProdatihObroka;
-	static int ukupanPrihod;
 
+    void pauza() const;
 };
-

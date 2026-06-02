@@ -7,30 +7,30 @@ class Obrok
 
 private:
     string naziv;
-    double cena;
+    int cena;
     int kolicina;
 
     static int brojObroka;
 
 public:
     Obrok();
-    Obrok(string naziv, double cena, int kolicina);
+    Obrok(string naziv, int cena, int kolicina);
 
     // Getteri
     string getNaziv() const;
-    double getCena() const;
+    int getCena() const;
     int getKolicina() const;
 
     //Setteri
  
     void setNaziv(string naziv);
-    void setCena(double cena);
+    void setCena(int cena);
     void setKolicina(int kolicina);
     
     // Ostalo
+	void prikaziObrok() const;
     void umanjiKolicinu();
 
-    void prikaziObroke() const;
     //void prikazi(bool detaljno) const;
 
     static int getBrojObroka();

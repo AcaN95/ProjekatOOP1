@@ -1,5 +1,11 @@
 #include "Obrok.h"
 
+void Obrok::prikaziObrok() const
+{
+	cout << "Naziv: " << naziv << endl << "Cena: " << cena << endl << "Kolicina: " << kolicina << endl << endl;
+
+}
+
 void Obrok::umanjiKolicinu()
 {
 	//mozda nisam ni morao ovo da radim.. jer cim je kolicina 0, objekat nestaje ali ok
@@ -11,15 +17,26 @@ void Obrok::umanjiKolicinu()
 	
 }
 
-void Obrok::prikaziObroke() const
+
+
+
+
+
+Obrok::Obrok()
 {
-	cout << "Naziv: " << naziv << " Cena: " << cena << " Kolicina: " << kolicina;
-	
+	naziv = "";
+	cena = 0;
+	kolicina = 0;
 }
 
-Obrok::Obrok(string Naziv, double Cena, int Kolicina)
+Obrok::Obrok(string Naziv, int Cena, int Kolicina)
 {
 	naziv = Naziv;
 	cena = Cena;
 	kolicina = Kolicina;
+}
+
+int Obrok::getCena() const
+{
+	return cena;
 }
