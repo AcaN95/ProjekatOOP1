@@ -9,7 +9,6 @@ private:
     string naziv;
     int cena;
     int kolicina;
-
     static int brojObroka;
 
 public:

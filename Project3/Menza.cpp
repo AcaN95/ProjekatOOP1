@@ -13,8 +13,8 @@ Menza::~Menza()
 
 void Menza::pauza() const
 {
-	
-		cout << "Unesite 0 za nazad";
+		
+	cout << endl << "Unesite 0 za nazad" << endl;
 		int komanda = 1;
 		while (komanda != 0) {
 			cin >> komanda;
@@ -65,6 +65,7 @@ void Menza::dodajObrok()
 void Menza::prikaziObroke() const
 {
 	for(int i=0;i<obroci.size();i++) {
+		cout << "Obrok " << i + 1 << endl;
 		obroci[i].prikaziObrok();
 	}
 	pauza();
@@ -88,6 +89,57 @@ void Menza::sortirajObrokePoCeni()
 	}
 }
 
+void Menza::staviStudentaURed(int brojKartice)
+{
+	cout << endl << endl;
+
+	Student* pronadjen = pronadjiStudenta(brojKartice);
+	if (pronadjen != nullptr) {
+		redCekanja.push(pronadjen);
+	}
+}
+
+void Menza::staviStudentaURed()
+{
+	prikaziStudente();
+	cout << "Unesite broj kartice studenta: ";
+	int brojKartice;
+	cin >> brojKartice;
+
+	staviStudentaURed(brojKartice);
+}
+
+void Menza::prikaziRed() const
+{
+	//Komplikovano mnogo.. ne moze da se prolazi kor red
+}
+
+void Menza::usluziStudenta(int redniBrojObroka)
+{
+	if (redCekanja.empty()) {
+		cout << "Nema nikog u redu!" << endl;
+		return;
+	}
+	Student* student = redCekanja.front();
+	redCekanja.pop();
+
+	Obrok* obrok = pronadjiObrok(redniBrojObroka);
+	if (obrok == nullptr) {
+		cout << "nema obroka sa tim brojem!";
+		return;
+	}
+	if (student->getStanjeNaKartici()>obrok->getCena()) {
+		cout << "Student nema dovoljno sredstava!" << endl;
+		return;
+	}
+
+	student->dopuniKarticu(-obrok->getCena());
+	obrok->umanjiKolicinu();
+	brojProdatihObroka++;
+	ukupanPrihod += obrok->getCena();
+	cout << "Usluzili ste studenta: " << student->getIme() << " " << student->getPrezime() << endl;
+}
+
 void Menza::dopuniKarticu()
 {
 	cout << endl;
@@ -97,13 +149,34 @@ void Menza::dopuniKarticu()
 	cout << "Unestie iznos za koji zelite da studentu povecate kredit:";
 	int kredit;
 	cin >> kredit;
+	Student* pronadjen = pronadjiStudenta(kartica);
+	if (pronadjen != nullptr) {
+		pronadjen->dopuniKarticu(kredit); //imam istu metodu u klasi Student, tako da zovem nju!
+	}
+}
+
+Student* Menza::pronadjiStudenta(int brojKartice)
+{
 	
 	for (int i = 0; i < studenti.size();i++)
 	{
-		if (studenti[i].getBrojKartice() == kartica) {
-			studenti[i].dopuniKarticu(kredit);
-			break;
+		if (studenti[i].getBrojKartice() == brojKartice) {
+			return &studenti[i];
 		}
 	}
+	cout << "Ne postoji student sa unetim brojem kartice!" << endl;
+	return nullptr;
+}
+
+Obrok* Menza::pronadjiObrok(int redniBroj)
+{
+	for (int i = 0; i < obroci.size();i++)
+	{
+		if (i == redniBroj - 1) {
+			return &obroci[i];
+		}
+	}
+	cout << "Ne postoji obrok sa unetim rednim brojem!" << endl;
+	return nullptr;
 }
 

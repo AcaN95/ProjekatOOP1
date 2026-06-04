@@ -33,6 +33,9 @@ public:
 
     // Red čekanja
     void staviStudentaURed(int brojKartice);
+    void staviStudentaURed();
+    void prikaziRed() const; //Komplikovano mnogo.. ne moze da se prolazi kor red
+
     void usluziStudenta(int redniBrojObroka);
 
     // Kartice

@@ -47,6 +47,7 @@ int main() {
 
         case 3:
             // prikazi studente
+            system("cls");
 			menza.prikaziStudente();
             break;
 
@@ -58,11 +59,21 @@ int main() {
 
 
         case 5:
+            system("cls");
+            menza.staviStudentaURed();
+            
+
             // stavi u red
 
             break;
 
         case 6:
+            system("cls");
+            menza.prikaziObroke();
+            int rbObroka;
+			cout << endl << "Unesite redni broj obroka koji student zeli" << endl << "Obrok: ";
+			cin >> rbObroka;
+			menza.usluziStudenta(rbObroka);
             // usluzi studenta
             break;
 
@@ -73,9 +84,11 @@ int main() {
             break;
 
         case 8:
+			system("cls");
             // izvestaj
             break;
         case 9:
+			system("cls");
             menza.sortirajObrokePoCeni();
             break;
         case 10:

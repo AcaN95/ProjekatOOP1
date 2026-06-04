@@ -55,7 +55,7 @@ void Student::dopuniKarticu(double iznos)
 
 void Student::prikazi() const
 {
-	cout << ime << " " << prezime << " " << " " << stanjeNaKartici << endl;
+	cout << ime << " " << prezime << " Broj kartice:" << brojKartice << " Stanje na kartici:" << stanjeNaKartici << endl;
 }
 
 void Student::prikazi(bool detaljno) const
