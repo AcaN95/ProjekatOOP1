@@ -11,8 +11,9 @@ void Obrok::umanjiKolicinu()
 	//mozda nisam ni morao ovo da radim.. jer cim je kolicina 0, objekat nestaje ali ok
 	if (kolicina > 0)
 		kolicina--;
-	else
+	else {
 		cout << "Obrok je prodat!";
+	}
 	//U finalnoj verziji obrisi ovaj out
 	
 }
@@ -39,4 +40,9 @@ Obrok::Obrok(string Naziv, int Cena, int Kolicina)
 int Obrok::getCena() const
 {
 	return cena;
+}
+
+int Obrok::getKolicina() const
+{
+	return kolicina;
 }

@@ -48,10 +48,6 @@ public:
     // Izveštaj
     void izvestaj() const;
 
-    // Statistika
-    static int getBrojProdatihObroka();
-    static double getUkupanPrihod();
-
 
     void pauza() const;
 };

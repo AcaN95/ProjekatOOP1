@@ -31,5 +31,4 @@ public:
     void dopuniKarticu(double iznos);
 
     void prikazi() const;
-    void prikazi(bool detaljno) const;
 };

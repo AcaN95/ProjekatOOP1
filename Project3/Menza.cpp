@@ -44,7 +44,6 @@ void Menza::prikaziStudente() const
 	for (int i = 0;i < studenti.size();i++) {
 		studenti[i].prikazi();
 	}
-	pauza();
 }
 
 void Menza::dodajObrok()
@@ -68,7 +67,6 @@ void Menza::prikaziObroke() const
 		cout << "Obrok " << i + 1 << endl;
 		obroci[i].prikaziObrok();
 	}
-	pauza();
 }
 
 void Menza::sortirajObrokePoCeni()
@@ -121,23 +119,45 @@ void Menza::usluziStudenta(int redniBrojObroka)
 		return;
 	}
 	Student* student = redCekanja.front();
-	redCekanja.pop();
 
 	Obrok* obrok = pronadjiObrok(redniBrojObroka);
 	if (obrok == nullptr) {
 		cout << "nema obroka sa tim brojem!";
+		cout << "Da li student napusta red";
+		int komanda;
+			cout << "1. Da" << endl << "2. Ne" << endl;
+			cin >> komanda;
+			if (komanda == 1) {
+				redCekanja.pop();
+			}
 		return;
 	}
-	if (student->getStanjeNaKartici()>obrok->getCena()) {
+	if (student->getStanjeNaKartici()- obrok->getCena()< 0) {
 		cout << "Student nema dovoljno sredstava!" << endl;
+		cout << "Da li student napusta red";
+			int komanda;
+			cout << "1. Da" << endl << "2. Ne" << endl;
+			cin >> komanda;
+			if (komanda == 1) {
+				redCekanja.pop();
+			}
 		return;
 	}
 
-	student->dopuniKarticu(-obrok->getCena());
-	obrok->umanjiKolicinu();
 	brojProdatihObroka++;
 	ukupanPrihod += obrok->getCena();
 	cout << "Usluzili ste studenta: " << student->getIme() << " " << student->getPrezime() << endl;
+	student->dopuniKarticu(obrok->getCena() * -1);
+	//umanjiKolicinu vraca signal. 1 ako je stanje 0
+	obrok->umanjiKolicinu();
+	for (int i = 0; i < obroci.size(); i++) {
+		if (obroci[i].getKolicina() == 0) {
+			obroci.erase(obroci.begin() + i);
+			break;
+		}
+	}
+	redCekanja.pop();
+
 }
 
 void Menza::dopuniKarticu()
@@ -178,5 +198,10 @@ Obrok* Menza::pronadjiObrok(int redniBroj)
 	}
 	cout << "Ne postoji obrok sa unetim rednim brojem!" << endl;
 	return nullptr;
+}
+
+void Menza::izvestaj() const
+{
+	cout << "Izvestaj!" << endl << "Ukupno je prodato i usluzeno " << brojProdatihObroka << " .Ukupan prihod je " << ukupanPrihod << endl;
 }
 

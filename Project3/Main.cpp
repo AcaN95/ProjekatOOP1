@@ -10,8 +10,7 @@ using namespace std;
 int main() {
 	cout << "Hello World!" << endl;
 
-    Menza menza;
-
+    Menza* menza = new Menza();
     int izbor;
 
     do {
@@ -36,31 +35,33 @@ int main() {
             system("cls");
 
             
-            menza.dodajStudenta();
+            menza->dodajStudenta();
             // dodaj studenta
             break;
         }
         case 2:
 			system("cls");
-            menza.dodajObrok();
+            menza->dodajObrok();
             break;
 
         case 3:
             // prikazi studente
             system("cls");
-			menza.prikaziStudente();
+			menza->prikaziStudente();
+            menza->pauza();
             break;
 
         case 4:
             system("cls");
-            menza.prikaziObroke();
+            menza->prikaziObroke();
+            menza->pauza();
             // prikazi obroke
             break;
 
 
         case 5:
             system("cls");
-            menza.staviStudentaURed();
+            menza->staviStudentaURed();
             
 
             // stavi u red
@@ -69,30 +70,34 @@ int main() {
 
         case 6:
             system("cls");
-            menza.prikaziObroke();
+            menza->prikaziObroke();
             int rbObroka;
 			cout << endl << "Unesite redni broj obroka koji student zeli" << endl << "Obrok: ";
 			cin >> rbObroka;
-			menza.usluziStudenta(rbObroka);
+			menza->usluziStudenta(rbObroka);
+            menza->pauza();
             // usluzi studenta
             break;
 
         case 7:
             system("cls");
-            menza.prikaziStudente();
-            menza.dopuniKarticu();
+            menza->prikaziStudente();
+            menza->dopuniKarticu();
             break;
 
         case 8:
 			system("cls");
+            menza->izvestaj();
+            menza->pauza();
             // izvestaj
             break;
         case 9:
 			system("cls");
-            menza.sortirajObrokePoCeni();
+            menza->sortirajObrokePoCeni();
             break;
         case 10:
             cout << "Kraj programa.\n";
+            delete menza;
             break;
 
         default:

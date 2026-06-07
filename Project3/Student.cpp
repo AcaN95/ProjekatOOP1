@@ -3,6 +3,15 @@
 #include <string>
 using namespace std;
 
+Student::Student()
+{
+	ime = "";
+	prezime = "";
+	indeks = 0;
+	brojKartice = 0;
+	stanjeNaKartici = 0;
+}
+
 Student::Student(string Ime, string Prezime, int Indeks, int BrojKartice)
 {
 	ime = Ime;
@@ -56,10 +65,4 @@ void Student::dopuniKarticu(double iznos)
 void Student::prikazi() const
 {
 	cout << ime << " " << prezime << " Broj kartice:" << brojKartice << " Stanje na kartici:" << stanjeNaKartici << endl;
-}
-
-void Student::prikazi(bool detaljno) const
-{
-	cout << ime << " " << prezime << " " << indeks << " " << brojKartice << " " << stanjeNaKartici << endl;
-
 }
